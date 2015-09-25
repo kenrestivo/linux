@@ -1,0 +1,45 @@
+/*
+  DTS overlay for two rotary controllers on a Pi 2.
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+	fragment@0 {
+		target = <&soc>;
+		__overlay__ {
+		rotary0: rotary@0 {
+				compatible = "rotary-encoder";
+				gpios = <&gpio 4 0>, <&gpio 17 0>;
+				linux,axis = <0>; /* REL_X */
+				rotary-encoder,relative-axis;
+			};
+
+		rotary1: rotary@1 {
+				compatible = "rotary-encoder";
+				gpios = <&gpio 27 0>, <&gpio 18 0>;
+				linux,axis = <0>; /* REL_X */
+				rotary-encoder,relative-axis;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&gpio>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&rotary_pins>;
+		rotary_pins: rotary_pins {
+				brcm,pins = <4 17 27 18>;     /* gpio no. */
+				brcm,function = <0 0 0 0>; /* 0:in, 1:out */
+				brcm,pull = <2 2 2 2>;     /* 2:up 1:down 0:none */
+			};
+
+		};
+	};
+
+
+ };
