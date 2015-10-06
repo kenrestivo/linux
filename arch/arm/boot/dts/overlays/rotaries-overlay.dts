@@ -13,14 +13,14 @@
 		__overlay__ {
 		rotary0: rotary@0 {
 				compatible = "rotary-encoder";
-				gpios = <&gpio 4 0>, <&gpio 17 0>;
+				gpios = <&gpio 17 0>, <&gpio 4 0>;
 				linux,axis = <0>; /* REL_X */
 				rotary-encoder,relative-axis;
 			};
 
 		rotary1: rotary@1 {
 				compatible = "rotary-encoder";
-				gpios = <&gpio 27 0>, <&gpio 18 0>;
+				gpios = <&gpio 18 0>, <&gpio 27 0>;
 				linux,axis = <0>; /* REL_X */
 				rotary-encoder,relative-axis;
 			};
